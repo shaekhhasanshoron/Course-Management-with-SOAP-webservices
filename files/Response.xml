@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetCourseDetailsResponse xmlns="http://shoron.com/course">
+	<CourseDetails>
+		<id>123</id>
+		<name>Spring Boot Course</name>
+		<description>Basics of Spring Boot</description>
+	</CourseDetails>
+</GetCourseDetailsResponse>

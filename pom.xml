@@ -34,6 +34,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -67,16 +71,16 @@
 				</executions>
 				<configuration>
 					<!-- Configuring JAXB-2 maven plugin -->
-					
+
 					<!-- 1. source folder for xsd -->
 					<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
-					
+
 					<!-- 2. source folder for output java files -->
 					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-					
+
 					<!-- 3. false the output directory so that no file can get removed -->
 					<clearOutputDir>false</clearOutputDir>
-					
+
 				</configuration>
 			</plugin>
 		</plugins>

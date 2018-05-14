@@ -1,7 +1,5 @@
 package com.shoron.soap.webservices.coursemanagement.soap;
 
-import javax.servlet.ServletRegistration;
-
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -27,20 +25,19 @@ public class WebServiceConfiguration {
 	
 	@Bean
 	public ServletRegistrationBean messageDispatcherServlet(ApplicationContext context) {
-		
-		// map messageDispatcherServlet to url
 		MessageDispatcherServlet messageDispatcherServlet = new MessageDispatcherServlet();
 		messageDispatcherServlet.setApplicationContext(context);
 		messageDispatcherServlet.setTransformWsdlLocations(true);
-		
 		return new ServletRegistrationBean(messageDispatcherServlet, "/ws/*");
 	}
 	
-	// configuring wsdl to the url-> /ws/course.wsdl
+	// configuring wsdl to the url-> /ws/courses.wsdl
 	// configure Portype-> CoursePort
 	//configure namespaces -> http://shoron.com/course
 	
-	@Bean(name="courses")
+	// /ws/courses.wsdl
+	// course-details.xsd
+	@Bean(name = "courses")
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema coursesSchema) {
 		DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
 		definition.setPortTypeName("CoursePort");
@@ -49,11 +46,9 @@ public class WebServiceConfiguration {
 		definition.setSchema(coursesSchema);
 		return definition;
 	}
-	
-	
-	// 1. defining a schema for wsdl
+
 	@Bean
-	public XsdSchema courseSchema() {
+	public XsdSchema coursesSchema() {
 		return new SimpleXsdSchema(new ClassPathResource("course-details.xsd"));
 	}
 }

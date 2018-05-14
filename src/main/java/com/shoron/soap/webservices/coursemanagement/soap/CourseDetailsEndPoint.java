@@ -3,10 +3,10 @@ package com.shoron.soap.webservices.coursemanagement.soap;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.shoron.course.GetCourseDetailsRequest;
 import com.shoron.course.GetCourseDetailsResponse;
-
 import com.shoron.course.CourseDetails;
 
 @Endpoint
@@ -21,7 +21,8 @@ public class CourseDetailsEndPoint {
 	//and
 	//name -> GetCourseDetailsRequest
 	@PayloadRoot(namespace="http://shoron.com/course",
-			localPart="GetCourseDetailsRequest")	
+			localPart="GetCourseDetailsRequest")
+	@ResponsePayload
 	public GetCourseDetailsResponse processCourseDetailsRequest
 		(@RequestPayload GetCourseDetailsRequest request) {
 		

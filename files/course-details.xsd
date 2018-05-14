@@ -11,5 +11,18 @@ elementFormDefault="qualified">
 			</sequence>
 		</complexType>
 	</element>
-	
+	<element name="GetCourseDetailsResponse">
+		<complexType>
+			<sequence>
+				<element name="CourseDetails" type="tns:CourseDetails"></element>
+			</sequence>
+		</complexType>
+	</element>
+	<complexType name="CourseDetails">
+		<sequence>
+			<element name="id" type="integer"></element>
+			<element name="name" type="string"></element>
+			<element name="description" type="string"></element>
+		</sequence>
+	</complexType>
 </schema>

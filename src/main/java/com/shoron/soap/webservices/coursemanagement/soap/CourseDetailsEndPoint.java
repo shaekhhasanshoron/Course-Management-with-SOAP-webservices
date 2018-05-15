@@ -11,6 +11,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import com.shoron.course.GetCourseDetailsRequest;
 import com.shoron.course.GetCourseDetailsResponse;
 import com.shoron.soap.webservices.coursemanagement.bean.Course;
+import com.shoron.soap.webservices.coursemanagement.exception.CourseNotFoundException;
 import com.shoron.soap.webservices.coursemanagement.service.CourseDetailsService;
 import com.shoron.soap.webservices.coursemanagement.service.CourseDetailsService.Status;
 import com.shoron.course.CourseDetails;
@@ -40,6 +41,10 @@ public class CourseDetailsEndPoint {
 		(@RequestPayload GetCourseDetailsRequest request) {
 		
 		Course course = service.findById(request.getId());
+		
+		if(course == null) {
+			throw new CourseNotFoundException("Invalid id" + request.getId());
+		}
 		
 		return mapCourseDetails(course); 		
 		

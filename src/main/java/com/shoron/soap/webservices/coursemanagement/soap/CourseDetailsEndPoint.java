@@ -13,6 +13,8 @@ import com.shoron.course.GetCourseDetailsResponse;
 import com.shoron.soap.webservices.coursemanagement.bean.Course;
 import com.shoron.soap.webservices.coursemanagement.service.CourseDetailsService;
 import com.shoron.course.CourseDetails;
+import com.shoron.course.DeleteCourseDetailsRequest;
+import com.shoron.course.DeleteCourseDetailsResponse;
 import com.shoron.course.GetAllCourseDetailsRequest;
 import com.shoron.course.GetAllCourseDetailsResponse;
 
@@ -86,6 +88,21 @@ public class CourseDetailsEndPoint {
 	 List<Course> courses  = service.findAll();
 	
 	 return mapAllCourseDetails(courses);
+	 
+	}
+	
+	@PayloadRoot(namespace="http://shoron.com/course",
+			localPart="DeleteCourseDetailsRequest")
+	@ResponsePayload
+	public DeleteCourseDetailsResponse deleteCourseDetailsRequest
+		(@RequestPayload DeleteCourseDetailsRequest request) {
+
+	 int status  = service.deleteById(request.getId());
+	
+	 DeleteCourseDetailsResponse response = new DeleteCourseDetailsResponse();
+	 response.setStatus(status);
+	 
+	 return response;
 	 
 	}
 }

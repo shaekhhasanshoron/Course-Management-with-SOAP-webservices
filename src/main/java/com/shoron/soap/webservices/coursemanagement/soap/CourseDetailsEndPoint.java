@@ -12,6 +12,7 @@ import com.shoron.course.GetCourseDetailsRequest;
 import com.shoron.course.GetCourseDetailsResponse;
 import com.shoron.soap.webservices.coursemanagement.bean.Course;
 import com.shoron.soap.webservices.coursemanagement.service.CourseDetailsService;
+import com.shoron.soap.webservices.coursemanagement.service.CourseDetailsService.Status;
 import com.shoron.course.CourseDetails;
 import com.shoron.course.DeleteCourseDetailsRequest;
 import com.shoron.course.DeleteCourseDetailsResponse;
@@ -97,12 +98,21 @@ public class CourseDetailsEndPoint {
 	public DeleteCourseDetailsResponse deleteCourseDetailsRequest
 		(@RequestPayload DeleteCourseDetailsRequest request) {
 
-	 int status  = service.deleteById(request.getId());
+	 Status status  = service.deleteById(request.getId());
 	
 	 DeleteCourseDetailsResponse response = new DeleteCourseDetailsResponse();
-	 response.setStatus(status);
+	 response.setStatus(mapStatus(status));
 	 
 	 return response;
 	 
+	}
+
+
+	private com.shoron.course.Status mapStatus(Status status) {
+		// TODO Auto-generated method stub
+		if(status == Status.FAILURE) {
+			return com.shoron.course.Status.FAILURE;
+		}
+		return com.shoron.course.Status.SUCCESS;
 	}
 }
